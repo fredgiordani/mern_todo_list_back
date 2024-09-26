@@ -1,22 +1,30 @@
-// Import des modules nécessaires
+const mongoose = require('mongoose');
 const express = require('express');
 const dotenv = require('dotenv');
+const todoRoutes = require('./routes/todo');
 
-// Charger les variables d'environnement depuis le fichier .env
+// Charger les variables d'environnement
 dotenv.config();
 
-// Initialisation de l'application Express
 const app = express();
-
-// Configuration du port (par défaut 3000 si non défini dans .env)
 const port = process.env.PORT || 3000;
 
-// Route de base pour tester le serveur
+// Connexion à MongoDB
+mongoose.connect('mongodb://localhost:27017/todolist')
+.then(() => console.log('Connexion à MongoDB réussie !'))
+.catch((err) => console.log('Erreur de connexion à MongoDB :', err));
+
+// Middleware pour traiter les requêtes JSON
+app.use(express.json());
+
+// Utiliser les routes Todo
+app.use('/api/todos', todoRoutes);
+
+// Routes simples pour tester
 app.get('/', (req, res) => {
-  res.send('Bienvenue sur mon serveur Node.js avec Express !');
+  res.send('Serveur et MongoDB connectés avec succès !');
 });
 
-// Démarrer le serveur et écouter sur le port défini
 app.listen(port, () => {
-  console.log(`Serveur démarré et écoutant sur le port ${port}`);
-})
+  console.log(`Serveur démarré sur le port ${port}`);
+});
