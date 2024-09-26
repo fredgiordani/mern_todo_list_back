@@ -4,6 +4,7 @@
   "description": "appli todo list",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "test"
   },
   "repository": {
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/fredgiordani/mern_todo_list_back/issues"
   },
-  "homepage": "https://github.com/fredgiordani/mern_todo_list_back#readme"
+  "homepage": "https://github.com/fredgiordani/mern_todo_list_back#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
 }
